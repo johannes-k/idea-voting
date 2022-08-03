@@ -96,3 +96,10 @@ You will notice that we are creating three artifacts in three different categori
 
 Push the changes to the cloud by running
 `amplify push`
+
+# Publish the app
+
+In order to publish the app, we have to add the amplify hosting resources to our backend by typeing `amplify add hosting` and choosing the following:
+-> Hosting with Amplify Console
+
+Following, choose wether you want to configure CI/CD by connecting the Amplify Console to your Git Reqpository, or if you just want to publish your app one time.

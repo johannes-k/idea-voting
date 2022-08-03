@@ -1,7 +1,11 @@
 type Topic
   @model
   @auth(
-    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+    rules: [
+      { allow: private, operations: [create, read], provider: userPools }
+      { allow: owner, operations: [update, delete], provider: userPools }
+      { allow: groups, groups: ["Admin"], operations: [update, delete], provider: userPools }
+    ]
   ) {
   id: ID!
   title: String!
@@ -14,7 +18,11 @@ type Topic
 type Idea
   @model
   @auth(
-    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+    rules: [
+      { allow: private, operations: [create, read], provider: userPools }
+      { allow: owner, operations: [update, delete], provider: userPools }
+      { allow: groups, groups: ["Admin"], operations: [update, delete], provider: userPools }
+    ]
   ) {
   id: ID!
   topicId: ID! @index(name: "byTopic")
@@ -27,7 +35,7 @@ type User
   @model
   @auth(
     rules: [
-      { allow: private, operations: [create, read, update], provider: userPools }
+      { allow: private, operations: [read], provider: userPools }
       { allow: private, operations: [create, read, update], provider: iam }
     ]
   ) {
@@ -39,7 +47,10 @@ type User
 type Vote
   @model
   @auth(
-    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+    rules: [
+      { allow: private, operations: [create, read], provider: userPools }
+      { allow: owner, operations: [update, delete], provider: userPools }
+    ]
   ) {
   id: ID!
   userId: ID!
