@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { DataStore, Auth } from 'aws-amplify'
+import { DataStore, Auth, SortDirection } from 'aws-amplify'
 import { Topic, TopicStatus, MultilingualString } from '../models'
 
 const useTopics = () => {
   const [topics, setTopics] = useState([])
 
   useEffect(() => {
-    const subscription = DataStore.observeQuery(Topic).subscribe((snapshot) => {
+    const subscription = DataStore.observeQuery(Topic, null, {
+      sort: (t) => t.createdAt(SortDirection.ASCENDING)
+    }).subscribe((snapshot) => {
       console.log(
         `Received new snapshot with ${snapshot.items.length} items. isSynced: ${snapshot.isSynced}`
       )
