@@ -55,10 +55,6 @@ const IdeaCard = ({ idea }) => {
   const { userIsAuthor } = useCurrentUserIsAuthor(idea)
 
   useEffect(() => {
-    console.log(userIsAuthor)
-  }, [userIsAuthor])
-
-  useEffect(() => {
     let sub
 
     const didCurrentUserVote = async () => {

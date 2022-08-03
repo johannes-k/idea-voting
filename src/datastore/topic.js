@@ -30,7 +30,8 @@ const createTopic = async (title, description) => {
           title: title,
           authorId: sub,
           status: TopicStatus.RUNNING,
-          description: new MultilingualString({ en: description, de: description })
+          description: new MultilingualString({ en: description, de: description }),
+          owner: sub + '::' + sub
         })
       )
       console.log(`Stored topic: ${JSON.stringify(topic)}`)

@@ -32,7 +32,8 @@ const createIdea = async (title, topicId) => {
         new Idea({
           topicId: topicId,
           authorId: sub,
-          title: title
+          title: title,
+          owner: sub + '::' + sub
         })
       )
       console.log(`Stored idea: ${JSON.stringify(idea)}`)

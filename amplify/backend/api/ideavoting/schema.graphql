@@ -2,9 +2,8 @@ type Topic
   @model
   @auth(
     rules: [
-      { allow: private, operations: [create, read], provider: userPools }
       { allow: owner, operations: [update, delete], provider: userPools }
-      { allow: groups, groups: ["Admin"], operations: [update, delete], provider: userPools }
+      { allow: private, operations: [create, read], provider: userPools }
     ]
   ) {
   id: ID!
@@ -13,15 +12,15 @@ type Topic
   description: MultilingualString
   status: TopicStatus!
   ideas: [Idea] @hasMany(indexName: "byTopic", fields: ["id"])
+  owner: String
 }
 
 type Idea
   @model
   @auth(
     rules: [
-      { allow: private, operations: [create, read], provider: userPools }
       { allow: owner, operations: [update, delete], provider: userPools }
-      { allow: groups, groups: ["Admin"], operations: [update, delete], provider: userPools }
+      { allow: private, operations: [create, read], provider: userPools }
     ]
   ) {
   id: ID!
@@ -29,13 +28,14 @@ type Idea
   authorId: ID!
   author: User @hasOne(fields: ["authorId"])
   title: String!
+  owner: String
 }
 
 type User
   @model
   @auth(
     rules: [
-      { allow: private, operations: [read], provider: userPools }
+      { allow: private, operations: [create, read], provider: userPools }
       { allow: private, operations: [create, read, update], provider: iam }
     ]
   ) {
@@ -48,13 +48,14 @@ type Vote
   @model
   @auth(
     rules: [
-      { allow: private, operations: [create, read], provider: userPools }
       { allow: owner, operations: [update, delete], provider: userPools }
+      { allow: private, operations: [create, read], provider: userPools }
     ]
   ) {
   id: ID!
-  userId: ID!
+  authorId: ID!
   ideaId: ID! @index(name: "byIdea")
+  owner: String
 }
 
 enum TopicStatus {

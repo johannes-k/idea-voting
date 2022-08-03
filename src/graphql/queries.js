@@ -18,22 +18,22 @@ export const getTopic = /* GraphQL */ `
           topicId
           authorId
           title
+          owner
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -57,12 +57,12 @@ export const listTopics = /* GraphQL */ `
           nextToken
           startedAt
         }
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -95,12 +95,12 @@ export const syncTopics = /* GraphQL */ `
           nextToken
           startedAt
         }
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -124,12 +124,12 @@ export const getIdea = /* GraphQL */ `
         _lastChangedAt
       }
       title
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -155,12 +155,12 @@ export const listIdeas = /* GraphQL */ `
           _lastChangedAt
         }
         title
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -195,12 +195,12 @@ export const syncIdeas = /* GraphQL */ `
           _lastChangedAt
         }
         title
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -275,14 +275,14 @@ export const getVote = /* GraphQL */ `
   query GetVote($id: ID!) {
     getVote(id: $id) {
       id
-      userId
+      authorId
       ideaId
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -295,14 +295,14 @@ export const listVotes = /* GraphQL */ `
     listVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userId
+        authorId
         ideaId
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -324,14 +324,14 @@ export const syncVotes = /* GraphQL */ `
     ) {
       items {
         id
-        userId
+        authorId
         ideaId
+        owner
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt

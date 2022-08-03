@@ -35,6 +35,7 @@ export declare class Topic {
   readonly description?: MultilingualString | null;
   readonly status: TopicStatus | keyof typeof TopicStatus;
   readonly ideas?: (Idea | null)[] | null;
+  readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Topic, TopicMetaData>);
@@ -47,6 +48,7 @@ export declare class Idea {
   readonly authorId: string;
   readonly author?: User | null;
   readonly title: string;
+  readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Idea, IdeaMetaData>);
@@ -65,8 +67,9 @@ export declare class User {
 
 export declare class Vote {
   readonly id: string;
-  readonly userId: string;
+  readonly authorId: string;
   readonly ideaId: string;
+  readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Vote, VoteMetaData>);

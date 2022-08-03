@@ -21,22 +21,22 @@ export const createTopic = /* GraphQL */ `
           topicId
           authorId
           title
+          owner
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -60,22 +60,22 @@ export const updateTopic = /* GraphQL */ `
           topicId
           authorId
           title
+          owner
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -99,22 +99,22 @@ export const deleteTopic = /* GraphQL */ `
           topicId
           authorId
           title
+          owner
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -138,12 +138,12 @@ export const createIdea = /* GraphQL */ `
         _lastChangedAt
       }
       title
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -167,12 +167,12 @@ export const updateIdea = /* GraphQL */ `
         _lastChangedAt
       }
       title
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -196,12 +196,12 @@ export const deleteIdea = /* GraphQL */ `
         _lastChangedAt
       }
       title
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -263,14 +263,14 @@ export const createVote = /* GraphQL */ `
   ) {
     createVote(input: $input, condition: $condition) {
       id
-      userId
+      authorId
       ideaId
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -281,14 +281,14 @@ export const updateVote = /* GraphQL */ `
   ) {
     updateVote(input: $input, condition: $condition) {
       id
-      userId
+      authorId
       ideaId
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -299,14 +299,14 @@ export const deleteVote = /* GraphQL */ `
   ) {
     deleteVote(input: $input, condition: $condition) {
       id
-      userId
+      authorId
       ideaId
+      owner
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

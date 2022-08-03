@@ -11,7 +11,7 @@ const useVotesPerIdea = (ideaId) => {
         console.log(
           `Received new snapshot with ${snapshot.items.length} votes for idea ${ideaId}. isSynced: ${snapshot.isSynced}`
         )
-        setVotes(snapshot.items.map(({ userId }) => userId))
+        setVotes(snapshot.items.map(({ authorId }) => authorId))
       }
     )
 
@@ -25,11 +25,13 @@ const useVotesPerIdea = (ideaId) => {
 
 const toggleVote = async (ideaId) => {
   const sub = (await Auth.currentAuthenticatedUser()).attributes.sub
-  const result = await DataStore.query(Vote, (v) => v.ideaId('eq', ideaId).userId('eq', sub))
+  const result = await DataStore.query(Vote, (v) => v.ideaId('eq', ideaId).authorId('eq', sub))
 
   if (Array.isArray(result) && result.length === 0) {
     try {
-      const vote = await DataStore.save(new Vote({ userId: sub, ideaId: ideaId }))
+      const vote = await DataStore.save(
+        new Vote({ authorId: sub, ideaId: ideaId, owner: sub + '::' + sub })
+      )
       console.log(`Created vote with id ${vote.id}`)
     } catch (error) {
       console.error(`Error while creating vote: `)

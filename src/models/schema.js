@@ -56,6 +56,13 @@ export const schema = {
                         "associatedWith": "topicId"
                     }
                 },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -85,14 +92,6 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "read"
-                                ],
-                                "provider": "userPools"
-                            },
-                            {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
@@ -103,16 +102,12 @@ export const schema = {
                                 "identityClaim": "cognito:username"
                             },
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "Admin"
-                                ],
+                                "allow": "private",
                                 "operations": [
-                                    "update",
-                                    "delete"
-                                ]
+                                    "create",
+                                    "read"
+                                ],
+                                "provider": "userPools"
                             }
                         ]
                     }
@@ -164,6 +159,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -202,14 +204,6 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "read"
-                                ],
-                                "provider": "userPools"
-                            },
-                            {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
@@ -220,16 +214,12 @@ export const schema = {
                                 "identityClaim": "cognito:username"
                             },
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "Admin"
-                                ],
+                                "allow": "private",
                                 "operations": [
-                                    "update",
-                                    "delete"
-                                ]
+                                    "create",
+                                    "read"
+                                ],
+                                "provider": "userPools"
                             }
                         ]
                     }
@@ -291,6 +281,7 @@ export const schema = {
                             {
                                 "allow": "private",
                                 "operations": [
+                                    "create",
                                     "read"
                                 ],
                                 "provider": "userPools"
@@ -319,8 +310,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "userId": {
-                    "name": "userId",
+                "authorId": {
+                    "name": "authorId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -331,6 +322,13 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -371,14 +369,6 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "read"
-                                ],
-                                "provider": "userPools"
-                            },
-                            {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
@@ -387,6 +377,14 @@ export const schema = {
                                     "delete"
                                 ],
                                 "identityClaim": "cognito:username"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "read"
+                                ],
+                                "provider": "userPools"
                             }
                         ]
                     }
@@ -425,5 +423,5 @@ export const schema = {
             }
         }
     },
-    "version": "12c6901178f10d3b970af35f483952ff"
+    "version": "a9b81688659353a9584a17d1e7483bbd"
 };
