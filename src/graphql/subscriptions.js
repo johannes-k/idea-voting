@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateTopic = /* GraphQL */ `
-  subscription OnCreateTopic {
-    onCreateTopic {
+  subscription OnCreateTopic($filter: ModelSubscriptionTopicFilterInput) {
+    onCreateTopic(filter: $filter) {
       id
       title
       authorId
@@ -23,6 +23,7 @@ export const onCreateTopic = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -32,12 +33,13 @@ export const onCreateTopic = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateTopic = /* GraphQL */ `
-  subscription OnUpdateTopic {
-    onUpdateTopic {
+  subscription OnUpdateTopic($filter: ModelSubscriptionTopicFilterInput) {
+    onUpdateTopic(filter: $filter) {
       id
       title
       authorId
@@ -57,6 +59,7 @@ export const onUpdateTopic = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -66,12 +69,13 @@ export const onUpdateTopic = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteTopic = /* GraphQL */ `
-  subscription OnDeleteTopic {
-    onDeleteTopic {
+  subscription OnDeleteTopic($filter: ModelSubscriptionTopicFilterInput) {
+    onDeleteTopic(filter: $filter) {
       id
       title
       authorId
@@ -91,6 +95,7 @@ export const onDeleteTopic = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -100,12 +105,13 @@ export const onDeleteTopic = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateIdea = /* GraphQL */ `
-  subscription OnCreateIdea {
-    onCreateIdea {
+  subscription OnCreateIdea($filter: ModelSubscriptionIdeaFilterInput) {
+    onCreateIdea(filter: $filter) {
       id
       topicId
       authorId
@@ -125,12 +131,13 @@ export const onCreateIdea = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateIdea = /* GraphQL */ `
-  subscription OnUpdateIdea {
-    onUpdateIdea {
+  subscription OnUpdateIdea($filter: ModelSubscriptionIdeaFilterInput) {
+    onUpdateIdea(filter: $filter) {
       id
       topicId
       authorId
@@ -150,12 +157,13 @@ export const onUpdateIdea = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteIdea = /* GraphQL */ `
-  subscription OnDeleteIdea {
-    onDeleteIdea {
+  subscription OnDeleteIdea($filter: ModelSubscriptionIdeaFilterInput) {
+    onDeleteIdea(filter: $filter) {
       id
       topicId
       authorId
@@ -175,12 +183,13 @@ export const onDeleteIdea = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+    onCreateUser(filter: $filter) {
       id
       email
       name
@@ -193,8 +202,8 @@ export const onCreateUser = /* GraphQL */ `
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+    onUpdateUser(filter: $filter) {
       id
       email
       name
@@ -207,8 +216,8 @@ export const onUpdateUser = /* GraphQL */ `
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+    onDeleteUser(filter: $filter) {
       id
       email
       name
@@ -221,8 +230,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateVote = /* GraphQL */ `
-  subscription OnCreateVote {
-    onCreateVote {
+  subscription OnCreateVote($filter: ModelSubscriptionVoteFilterInput) {
+    onCreateVote(filter: $filter) {
       id
       userId
       ideaId
@@ -231,12 +240,13 @@ export const onCreateVote = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateVote = /* GraphQL */ `
-  subscription OnUpdateVote {
-    onUpdateVote {
+  subscription OnUpdateVote($filter: ModelSubscriptionVoteFilterInput) {
+    onUpdateVote(filter: $filter) {
       id
       userId
       ideaId
@@ -245,12 +255,13 @@ export const onUpdateVote = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteVote = /* GraphQL */ `
-  subscription OnDeleteVote {
-    onDeleteVote {
+  subscription OnDeleteVote($filter: ModelSubscriptionVoteFilterInput) {
+    onDeleteVote(filter: $filter) {
       id
       userId
       ideaId
@@ -259,6 +270,7 @@ export const onDeleteVote = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
