@@ -1,0 +1,58 @@
+type Topic
+  @model
+  @auth(
+    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+  ) {
+  id: ID!
+  title: String!
+  authorId: ID
+  description: MultilingualString
+  status: TopicStatus!
+  ideas: [Idea] @hasMany(indexName: "byTopic", fields: ["id"])
+}
+
+type Idea
+  @model
+  @auth(
+    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+  ) {
+  id: ID!
+  topicId: ID! @index(name: "byTopic")
+  authorId: ID!
+  author: User @hasOne(fields: ["authorId"])
+  title: String!
+}
+
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [create, read, update], provider: userPools }
+      { allow: private, operations: [create, read, update], provider: iam }
+    ]
+  ) {
+  id: ID!
+  email: String!
+  name: String!
+}
+
+type Vote
+  @model
+  @auth(
+    rules: [{ allow: private, operations: [create, read, update, delete], provider: userPools }]
+  ) {
+  id: ID!
+  userId: ID!
+  ideaId: ID! @index(name: "byIdea")
+}
+
+enum TopicStatus {
+  PLANNING
+  RUNNING
+  FINISHED
+}
+
+type MultilingualString {
+  en: String!
+  de: String
+}

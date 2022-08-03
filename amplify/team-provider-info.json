@@ -1,0 +1,40 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ideavoting-dev-81030-authRole",
+      "UnauthRoleArn": "arn:aws:iam::968444579101:role/amplify-ideavoting-dev-81030-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::968444579101:role/amplify-ideavoting-dev-81030-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-ideavoting-dev-81030-deployment",
+      "UnauthRoleName": "amplify-ideavoting-dev-81030-unauthRole",
+      "StackName": "amplify-ideavoting-dev-81030",
+      "StackId": "arn:aws:cloudformation:eu-central-1:968444579101:stack/amplify-ideavoting-dev-81030/a4699970-1160-11ed-92dc-02ae74e86842",
+      "AmplifyAppId": "d399ve4vt0r0yg",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-ideavoting-dev-81030-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "ideavoting6558f167": {},
+        "ideavoting63645916": {},
+        "ideavoting3016df14": {},
+        "ideavotingcognito": {},
+        "ideavoting530c0251": {},
+        "ideavoting95b1f7c1": {},
+        "ideavoting97e368b8": {}
+      },
+      "function": {
+        "ideavoting3016df14PostConfirmation": {
+          "GROUP": ""
+        },
+        "ideavoting530c0251PostConfirmation": {
+          "GROUP": ""
+        },
+        "ideavoting97e368b8PostConfirmation": {
+          "GROUP": "",
+          "deploymentBucketName": "amplify-ideavoting-dev-81030-deployment",
+          "s3Key": "amplify-builds/ideavoting97e368b8PostConfirmation-655a6e69366b4b4e685a-build.zip"
+        }
+      }
+    }
+  }
+}

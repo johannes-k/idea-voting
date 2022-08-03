@@ -1,0 +1,25 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "ideavoting97e368b8",
+  "functionName": "ideavoting97e368b8PostConfirmation",
+  "resourceName": "ideavoting97e368b8PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "ideavoting97e368b8PostConfirmation",
+  "skipEdit": true,
+  "GROUP": "",
+  "enableCors": false,
+  "permissions": {
+    "api": {
+      "ideavoting": [
+        "Mutation"
+      ]
+    }
+  }
+}

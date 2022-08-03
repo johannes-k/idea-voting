@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The following steps are also descriped at https://docs.amplify.aws/start/getting-started/installation/q/integration/react/
 
-## Available Scripts
+## AMPLIFY CLI
 
-In the project directory, you can run:
+Install the AWS Amplify CLI if you dont have it already installed:
+`npm install -g @aws-amplify/cli`
 
-### `npm start`
+Connect the Amplify CLI to your AWS Account. (if you dont already have an Account, create one first ;) )
+`amplify configure`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+After you have successfully logged in, the CLI asks you to choose an AWS region. Choose "eu-central-1" since this is probably the closest location for you.
+Following, choose an IAM user name which Amplify will use to create resources in your account. Just confirm every step of the creation wizard without changing anything until you see the accessKeyId and secretAccessKey for your IAM user. You will have to paste this info to the Amplify CLI. Remember that you won't be able to see these credetials again.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After the CLI is successfully authenticated, you can enter a profile name. You can have multiple AWS Accounts configured simultaniously on your machine, so just choose a name that identifies the user you just configured.
 
-### `npm test`
+## Create a new React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Let's bootstrap our app by creating a new single-page application using Create React App (https://github.com/facebook/create-react-app)
+`npx create-react-app idea-voting`
 
-### `npm run build`
+and start it via
+`npm start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Add Amplify to our project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Initialize Amplify in the current project by running
+`amplify init`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The default options should be fine for our usecase, so just confirm them. Afterwards, you have to choose AWS profile as authentication method and select the AWS profile we just created using "amplify configure"
 
-### `npm run eject`
+Afterwards, install the Amplify libraries used in this project
+`npm install aws-amplify @aws-amplify/ui-react`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+and import them in our src/index.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Add Amplify capabilities
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Auth using Cognito
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Add an Auth by typing
+`amplify add auth`
+and choosing the following options:
 
-## Learn More
+-> Defaut configuration
+-> Email
+-> Yes, I want to make some additional changes
+-> Email, Name
+-> Add User to Group
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### GraphQL API and database
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Add an API by typing
+`amplify add api`
 
-### Code Splitting
+Dont use the default settings, but instead choose Amazon Cognito User Pool as an authorization type.
+Also, enable conflict detection so we can use Amplify DataStore.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Finally, define your API in "amplify/backend/api/{app-name}/schema.graphql"
 
-### Analyzing the Bundle Size
+### Edit the post confirmation function created by cognito
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+At first, we have to assign the required resource access permissions. Therefore, we are going to edit the function:
+`amplify update function`
 
-### Making a Progressive Web App
+-> Choose the post confirmation function
+-> Resource access permissions
+-> API
+-> Mutation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Now we can edit the functions code at "amplify/backend/function/{function-name}/src/index.js"
 
-### Advanced Configuration
+Install the necessary dependencies:
+`npm add @apollo/client @aws-sdk/credential-provider-node aws-appsync-auth-link graphql isomorphic-fetch`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+_Tipp:_
+You can test your function by mocking it with an event:
+`amplify mock function ideavoting97e368b8PostConfirmation --event "src/event.json"`
 
-### Deployment
+In order for IAM as Auth method to work locally and in the AWS AppSync Console, you have to add your IAM user to a custom-roles.json.
+For example, paste the following in "amplify/backend/api/{app-name}/custom-roles.json" and replace the users with your IAM users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+{
+  "adminRoleNames": ["amplify-cli-user", "Johannes"]
+}
+```
 
-### `npm run build` fails to minify
+### Push everything to the cloud
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+First, you can check the changes that will be pushed to AWS by running
+`amplify status`
+
+You will notice that we are creating three artifacts in three different categories, namely Function, Auth and Apu.
+
+Push the changes to the cloud by running
+`amplify push`
