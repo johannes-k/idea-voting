@@ -9,7 +9,7 @@ import { useVotesPerIdea, toggleVote } from '../datastore/vote'
 import { useIdeas, deleteIdea } from '../datastore/idea'
 import '../styles/ideas.css'
 
-const Ideas = ({ topicId }) => {
+const Ideas = ({ topicId, language }) => {
   const [modalShow, setModalShow] = useState(false)
   const { ideas } = useIdeas(topicId)
 
@@ -25,7 +25,7 @@ const Ideas = ({ topicId }) => {
     <>
       <div className="ideasWrapper">
         {ideas.map((value, index) => (
-          <IdeaCard idea={value} key={index} />
+          <IdeaCard idea={value} key={index} language={language} />
         ))}
         <CreateIdea ideas={ideas} openModal={openModal} />
       </div>
@@ -49,7 +49,7 @@ const CreateIdea = ({ ideas, openModal }) => {
   )
 }
 
-const IdeaCard = ({ idea }) => {
+const IdeaCard = ({ idea, language }) => {
   const { votes } = useVotesPerIdea(idea.id)
   const [liked, setLiked] = useState(false)
   const { userIsAuthor } = useCurrentUserIsAuthor(idea)
@@ -87,7 +87,7 @@ const IdeaCard = ({ idea }) => {
               <span>{votes?.length}</span>
             </div>
           )}
-          <div className="ideaTitle">{idea.title}</div>
+          <div className="ideaTitle">{idea?.title[language]}</div>
           <div className={'like-button' + (liked ? ' liked' : '')}>
             <div className="heart-like-button"></div>
           </div>

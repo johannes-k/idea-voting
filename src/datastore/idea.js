@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { DataStore, Auth } from 'aws-amplify'
-import { Idea } from '../models'
+import { Idea, MultilingualString } from '../models'
 
 const useIdeas = (topicId) => {
   const [ideas, setIdeas] = useState([])
@@ -24,7 +24,7 @@ const useIdeas = (topicId) => {
   return { ideas }
 }
 
-const createIdea = async (title, topicId) => {
+const createIdea = async (title, translatedTitle, topicId) => {
   if (title && topicId) {
     try {
       const sub = (await Auth.currentAuthenticatedUser()).attributes.sub
@@ -32,7 +32,7 @@ const createIdea = async (title, topicId) => {
         new Idea({
           topicId: topicId,
           authorId: sub,
-          title: title,
+          title: new MultilingualString({ de: title, en: translatedTitle }),
           owner: sub + '::' + sub
         })
       )

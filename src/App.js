@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/app.css'
 import { withAuthenticator } from '@aws-amplify/ui-react'
@@ -7,11 +7,12 @@ import Header from './components/Header'
 import Topics from './components/Topics'
 
 function App() {
+  const [language, setLanguage] = useState('de')
   return (
     <div className="App">
-      <Header />
+      <Header language={language} setLanguage={setLanguage} />
       <div className="Content">
-        <Topics />
+        <Topics language={language} />
       </div>
     </div>
   )

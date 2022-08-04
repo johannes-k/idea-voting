@@ -8,7 +8,10 @@ export const createTopic = /* GraphQL */ `
   ) {
     createTopic(input: $input, condition: $condition) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -20,7 +23,6 @@ export const createTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -47,7 +49,10 @@ export const updateTopic = /* GraphQL */ `
   ) {
     updateTopic(input: $input, condition: $condition) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -59,7 +64,6 @@ export const updateTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -86,7 +90,10 @@ export const deleteTopic = /* GraphQL */ `
   ) {
     deleteTopic(input: $input, condition: $condition) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -98,7 +105,6 @@ export const deleteTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -137,7 +143,10 @@ export const createIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt
@@ -166,7 +175,10 @@ export const updateIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt
@@ -195,7 +207,10 @@ export const deleteIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt

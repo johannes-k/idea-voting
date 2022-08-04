@@ -30,7 +30,7 @@ type VoteMetaData = {
 
 export declare class Topic {
   readonly id: string;
-  readonly title: string;
+  readonly title?: MultilingualString | null;
   readonly authorId?: string | null;
   readonly description?: MultilingualString | null;
   readonly status: TopicStatus | keyof typeof TopicStatus;
@@ -47,7 +47,7 @@ export declare class Idea {
   readonly topicId: string;
   readonly authorId: string;
   readonly author?: User | null;
-  readonly title: string;
+  readonly title?: MultilingualString | null;
   readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

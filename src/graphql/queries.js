@@ -5,7 +5,10 @@ export const getTopic = /* GraphQL */ `
   query GetTopic($id: ID!) {
     getTopic(id: $id) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -17,7 +20,6 @@ export const getTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -46,7 +48,10 @@ export const listTopics = /* GraphQL */ `
     listTopics(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
+        title {
+          en
+          de
+        }
         authorId
         description {
           en
@@ -84,7 +89,10 @@ export const syncTopics = /* GraphQL */ `
     ) {
       items {
         id
-        title
+        title {
+          en
+          de
+        }
         authorId
         description {
           en
@@ -123,7 +131,10 @@ export const getIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt
@@ -154,7 +165,10 @@ export const listIdeas = /* GraphQL */ `
           _deleted
           _lastChangedAt
         }
-        title
+        title {
+          en
+          de
+        }
         owner
         createdAt
         updatedAt
@@ -194,7 +208,10 @@ export const syncIdeas = /* GraphQL */ `
           _deleted
           _lastChangedAt
         }
-        title
+        title {
+          en
+          de
+        }
         owner
         createdAt
         updatedAt

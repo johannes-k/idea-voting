@@ -91,5 +91,12 @@
       "type": "cicd",
       "lastPushTimeStamp": "2022-08-03T06:05:25.541Z"
     }
+  },
+  "predictions": {
+    "translateText": {
+      "providerPlugin": "awscloudformation",
+      "service": "Translate",
+      "convertType": "translateText"
+    }
   }
 }

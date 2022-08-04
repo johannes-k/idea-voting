@@ -13,8 +13,10 @@ export const schema = {
                 "title": {
                     "name": "title",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
+                    "type": {
+                        "nonModel": "MultilingualString"
+                    },
+                    "isRequired": false,
                     "attributes": []
                 },
                 "authorId": {
@@ -155,8 +157,10 @@ export const schema = {
                 "title": {
                     "name": "title",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
+                    "type": {
+                        "nonModel": "MultilingualString"
+                    },
+                    "isRequired": false,
                     "attributes": []
                 },
                 "owner": {
@@ -423,5 +427,5 @@ export const schema = {
             }
         }
     },
-    "version": "a9b81688659353a9584a17d1e7483bbd"
+    "version": "620d1e453b47d85fbabe1128c4505886"
 };

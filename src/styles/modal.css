@@ -37,12 +37,27 @@
 }
 
 .modal .modal-text-area {
-  width: 100%;
   background-color: #383838;
   border: none;
   color: #fff;
   padding: 5px 10px;
+}
+
+.modal .translation {
+  opacity: 0.5;
+}
+
+.modal .formSpacing {
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal .formSpacing2 {
+  margin-bottom: 20px;
+}
+
+.modal .spinner {
+  margin-left: 10px;
 }
 
 .modal .buttons {

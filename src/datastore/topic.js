@@ -23,16 +23,16 @@ const useTopics = () => {
   return { topics }
 }
 
-const createTopic = async (title, description) => {
+const createTopic = async (title, description, translatedTitle, translatedDescription) => {
   if (title && description) {
     try {
       const sub = (await Auth.currentAuthenticatedUser()).attributes.sub
       const topic = await DataStore.save(
         new Topic({
-          title: title,
+          title: new MultilingualString({ de: title, en: translatedTitle }),
           authorId: sub,
           status: TopicStatus.RUNNING,
-          description: new MultilingualString({ en: description, de: description }),
+          description: new MultilingualString({ de: description, en: translatedDescription }),
           owner: sub + '::' + sub
         })
       )

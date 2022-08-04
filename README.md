@@ -87,7 +87,15 @@ For example, paste the following in "amplify/backend/api/{app-name}/custom-roles
 }
 ```
 
-### Push everything to the cloud
+### Add a text translation feature
+
+Start by running `amplify add predictions`
+--> Convert
+--> Convert text into a different language
+--> Choose source langugage
+--> Choose target language
+
+## Push everything to the cloud
 
 First, you can check the changes that will be pushed to AWS by running
 `amplify status`

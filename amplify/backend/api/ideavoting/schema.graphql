@@ -7,7 +7,7 @@ type Topic
     ]
   ) {
   id: ID!
-  title: String!
+  title: MultilingualString
   authorId: ID
   description: MultilingualString
   status: TopicStatus!
@@ -27,7 +27,7 @@ type Idea
   topicId: ID! @index(name: "byTopic")
   authorId: ID!
   author: User @hasOne(fields: ["authorId"])
-  title: String!
+  title: MultilingualString
   owner: String
 }
 

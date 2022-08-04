@@ -7,7 +7,7 @@ import { useCurrentUserIsAuthor } from '../hooks/useCurrentUserIsAuthor'
 import { useTopics, deleteTopic } from '../datastore/topic'
 import '../styles/topics.css'
 
-const Topics = () => {
+const Topics = ({ language }) => {
   const { topics } = useTopics()
 
   if (topics.length === 0) {
@@ -15,8 +15,8 @@ const Topics = () => {
   }
 
   return topics.map((topic) => (
-    <Topic topic={topic} key={topic.id}>
-      <Ideas topicId={topic.id} />
+    <Topic topic={topic} key={topic.id} language={language}>
+      <Ideas topicId={topic.id} language={language} />
     </Topic>
   ))
 }
@@ -30,14 +30,14 @@ const NoTopicsFound = () => {
   )
 }
 
-const Topic = ({ topic, children }) => {
+const Topic = ({ topic, children, language }) => {
   const { userIsAuthor } = useCurrentUserIsAuthor(topic)
   return (
     <div className="topic">
       <div className="topicHeader">
         <div className="topicHeaderText">
-          <h3>{topic.title}</h3>
-          <div>{topic?.description?.en}</div>
+          <h3>{topic?.title[language]}</h3>
+          <div>{topic?.description[language]}</div>
         </div>
         {userIsAuthor && (
           <button onClick={() => deleteTopic(topic.id)}>

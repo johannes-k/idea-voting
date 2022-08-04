@@ -5,7 +5,10 @@ export const onCreateTopic = /* GraphQL */ `
   subscription OnCreateTopic($filter: ModelSubscriptionTopicFilterInput) {
     onCreateTopic(filter: $filter) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -17,7 +20,6 @@ export const onCreateTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -41,7 +43,10 @@ export const onUpdateTopic = /* GraphQL */ `
   subscription OnUpdateTopic($filter: ModelSubscriptionTopicFilterInput) {
     onUpdateTopic(filter: $filter) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -53,7 +58,6 @@ export const onUpdateTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -77,7 +81,10 @@ export const onDeleteTopic = /* GraphQL */ `
   subscription OnDeleteTopic($filter: ModelSubscriptionTopicFilterInput) {
     onDeleteTopic(filter: $filter) {
       id
-      title
+      title {
+        en
+        de
+      }
       authorId
       description {
         en
@@ -89,7 +96,6 @@ export const onDeleteTopic = /* GraphQL */ `
           id
           topicId
           authorId
-          title
           owner
           createdAt
           updatedAt
@@ -125,7 +131,10 @@ export const onCreateIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt
@@ -151,7 +160,10 @@ export const onUpdateIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt
@@ -177,7 +189,10 @@ export const onDeleteIdea = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      title
+      title {
+        en
+        de
+      }
       owner
       createdAt
       updatedAt

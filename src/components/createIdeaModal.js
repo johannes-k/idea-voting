@@ -1,20 +1,31 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Spinner from 'react-bootstrap/Spinner'
 import { createIdea } from '../datastore/idea'
+import { useTranslation } from '../hooks/useTranslation'
 import '../styles/modal.css'
 
 const CreateIdeaModal = ({ onHide, topicId, show }) => {
+  const {
+    translate: translateTitle,
+    translation: translationTitle,
+    loading: loadingTitle
+  } = useTranslation()
   const [value, setValue] = useState('')
 
   const handleChange = (event) => {
     setValue(event.target.value)
   }
 
-  const submitAction = async (event, value) => {
+  const handleBlur = (event) => {
+    translateTitle(event.target.value)
+  }
+
+  const submitAction = async (event) => {
     event.preventDefault()
 
-    if (value && (await createIdea(value, topicId))) {
+    if (value && (await createIdea(value, translationTitle, topicId))) {
       onHide()
       setValue('')
     }
@@ -26,15 +37,28 @@ const CreateIdeaModal = ({ onHide, topicId, show }) => {
         <h3 className="modal-title">Submit a new idea</h3>
       </Modal.Title>
       <Modal.Body>
-        <Form onSubmit={(event) => submitAction(event, value)}>
-          <Form.Control
-            type="text"
-            name="title"
-            className="modal-text-input"
-            value={value}
-            onChange={handleChange}
-            autoFocus
-          />
+        <Form onSubmit={(event) => submitAction(event)}>
+          <Form.Group className="formSpacing2">
+            <Form.Label>Titel</Form.Label>
+            <Form.Control
+              type="text"
+              name="title"
+              className="modal-text-input"
+              value={value}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoFocus
+            />
+          </Form.Group>
+          {loadingTitle && (
+            <Spinner animation="border" variant="light" size="sm" className="spinner" />
+          )}
+          {translationTitle && !loadingTitle && (
+            <>
+              <div>Übersetzung</div>
+              <div className="translation">{translationTitle}</div>
+            </>
+          )}
           <div className="buttons">
             <button type="button" className="modal-close-button" onClick={onHide}>
               Close
