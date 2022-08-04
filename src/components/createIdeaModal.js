@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import { createIdea } from '../datastore/idea'
-import { useTranslation } from '../hooks/useTranslation'
+import { useTranslation, translateText } from '../hooks/useTranslation'
 import '../styles/modal.css'
 
 const CreateIdeaModal = ({ onHide, topicId, show }) => {
@@ -25,7 +25,14 @@ const CreateIdeaModal = ({ onHide, topicId, show }) => {
   const submitAction = async (event) => {
     event.preventDefault()
 
-    if (value && (await createIdea(value, translationTitle, topicId))) {
+    let translation
+    if (translationTitle !== '') {
+      translation = translationTitle
+    } else {
+      translation = await translateText(event?.target[0]?.value)
+    }
+
+    if (value && (await createIdea(value, translation, topicId))) {
       onHide()
       setValue('')
     }
